@@ -8,9 +8,6 @@
 {{end}}
  
 {{$st = (getMember $st.Value).Nick}}
-{{if not $st}}
-	{{$st = " ..."}}
-{{end}}
 {{$list := ""}}
 {{$i := 0}}
 {{range $players}}
