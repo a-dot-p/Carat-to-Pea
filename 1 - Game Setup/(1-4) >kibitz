@@ -1,0 +1,8 @@
+{{range .CmdArgs}}
+	{{if targetHasRole . "/1/"}}
+      	{{takeRole . "/1/"}}
+	{{else}}
+		{{giveRole . "/1/"}}
+	{{end}}
+{{end}}
+{{addReactions "🫛"}}
