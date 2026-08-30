@@ -1,0 +1,10 @@
+{{$thread := ""}}
+{{if .StrippedMsg}}
+	{{$thread = createThread nil nil .StrippedMsg}}
+{{else}}
+	{{$thread = createThread nil nil "Nomination Thread"}}
+{{end}}
+{{$threadID := $thread.ID}}
+{{dbSet 1 `nominationThread` (str $threadID)}} 
+{{addThreadMember $threadID .User.ID}}
+{{addReactions "🫛"}}
