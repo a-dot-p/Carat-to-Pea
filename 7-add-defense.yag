@@ -1,0 +1,13 @@
+{{$args := parseArgs 2 "`>adddefense nominationID defense message`" (carg "string" "nomID") (carg "string" "defenseMessage")}}
+{{$nomID := $args.Get 0}}
+{{$defense := $args.Get 1}}
+{{$threadID := (dbGet 1 "nominationThread").Value}}
+ 
+{{$voteMsg := (dbGet 1 $nomID).Value}}
+{{$voteMsg = (getMessage $threadID $voteMsg).Content }}
+{{$voteMsg = reReplace `Defense:.+` $voteMsg (printf "Defense: %s" $defense) }}	
+ 
+{{$message := complexMessageEdit "content" $voteMsg}}
+ 
+{{editMessage $threadID (dbGet 1 $nomID).Value $message}}
+{{addReactions "🫛"}}
