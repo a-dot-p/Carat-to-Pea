@@ -1,0 +1,39 @@
+{{$players := dbGetPattern 1 `p-%` 20 0}}
+{{$st := dbGet 1 "textST"}}
+ 
+{{$numPlayers := len $players}}
+{{if not (and (gt $numPlayers 0) ($st.Value)) }}
+	```Missing a Storyteller OR zero players have signed up.```
+	{{return}}
+{{end}}
+ 
+{{$st = (getMember $st.Value).Nick}}
+{{if not $st}}
+	{{$st = " ..."}}
+{{end}}
+{{$list := ""}}
+{{$i := 0}}
+{{range $players}}
+	{{$i = add 1 $i}}
+	{{$nick := (getMember .Value).Nick}}
+	{{$list = joinStr "\n" $list (printf "%d) %s" $i  $nick) }}
+{{end}}
+ 
+{{ sendMessage nil (complexMessage
+	"embed" (cembed
+		"title" "Current Game List"
+		"fields" (cslice
+			(sdict
+				"name" "Storyteller"
+				"value" $st
+				"inline" false
+			)
+			(sdict
+				"name" "Players"
+				"value" $list
+				"inline" false
+			)
+		)
+	)
+) }}
+{{addReactions "🫛"}}
