@@ -1,4 +1,5 @@
 # Carat-to-Pea
+https://release.botc.app/resources/community/ccc-parchment.png
 
 Using the Discord bot [YAGPDB](https://yagpdb.xyz/) to recreate commands for Blood on the Clocktower text games.
 
