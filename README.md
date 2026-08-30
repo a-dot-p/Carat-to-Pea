@@ -15,13 +15,20 @@ Credit goes to the [Carat](https://github.com/JackKBroome/Carat_BOTC) bot in the
 # Setup
 
 ### I. Add YAGPDB
-If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This uses the Custom Commands feature: `17 ` are currently implemented, so 17 custom command slots need to be open. 
+If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This uses the Custom Commands feature: `17 ` are currently implemented, so 17 custom command slots need to be open. The built-in database is used to store game info. 
 
 ### II. Discord Setup
-Create a role for the players and note down its ID. Do the same for the Storyteller. Create a channel for each new text game and one permanent channel for the kibitz (spectator chat). 
+1. Create a role for the players and note down its ID. Do the same for the Storyteller.
+2. Create a channel for each new text game
+3. Create a permanent channel for the kibitz (spectator chat). 
 
 ### III. Adding commands
 1. Login to [the bot's control panel](https://yagpdb.xyz/manage)
 2. Go to `Custom Commands` > `Commands` . Create a command group for text games to stay organized (and if you have other CCs).
 3. For each command you want to add, copy+paste the code exactly as in the files (the ones below need some changes)
+   
+(1-1)
+* replace all `/1/` with the role ID of the player role (e.g. `/1/` becomes `123456789`)
+* replace all `/2/` with the role ID of the ST role
+  
 
