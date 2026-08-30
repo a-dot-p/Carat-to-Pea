@@ -5,12 +5,12 @@
  
  
 {{if eq $role `play`}}
-{{if hasRole "Text Game Player"}}
-	{{- removeRole "Text Game Player"}}
+{{if hasRole "/1/"}}
+	{{- removeRole "/1/"}}
 	```Removed the text game role.```
 	{{dbDel 1 $keyP}}
 {{else}}
-	{{- addRole "Text Game Player"}}
+	{{- addRole "/1/"}}
 	```Added the text game role.```
 	{{dbSet 1 $keyP (str .User.ID) }}
 {{end}}
@@ -18,13 +18,13 @@
 {{end}}
  
 {{if or (eq $role `ST`) (eq $role `st`) }}
-	{{if hasRole "Text ST"}}
-		{{- removeRole "Text ST"}}
-		```Removed the text ST role.```
+	{{if hasRole "/2/"}}
+		{{- removeRole "/2/"}}
+		```Removed the /2/ role.```
 		{{dbDel 1 $keyST}}
 	{{else}}
-	{{- addRole "Text ST"}}
-		```Added the text ST role.```
+	{{- addRole "/2/"}}
+		```Added the /2/ role.```
 		{{dbSet 1 $keyST (str .User.ID) }}
 	{{end}}
 	{{addReactions "🫛"}}
