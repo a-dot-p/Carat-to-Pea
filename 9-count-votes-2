@@ -1,0 +1,7 @@
+{{ $modal := cmodal
+  "title" "Count Votes"
+  "custom_id" (printf "cvModal-%s" .StrippedID)
+  "fields" (cslice
+    (sdict "label" "Votes in order, separated by ;" "placeholder" "send votes in format \"y;n;n\"" "required" true))
+   }}
+{{ sendModal $modal }}
