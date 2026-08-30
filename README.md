@@ -15,7 +15,7 @@ Credit goes to the [Carat](https://github.com/JackKBroome/Carat_BOTC) bot in the
 # Setup
 
 ### I. Add YAGPDB
-If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This uses the Custom Commands feature: `17 ` are currently implemented, so 17 custom command slots need to be open. The built-in database is used to store game info. 
+If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This uses the Custom Commands feature: `17 ` are currently implemented, so 17 custom command slots need to be open. The built-in database is used to store game info. Any previous data with the userID `1` will be overwritten!
 
 ### II. Discord Setup
 1. Create a role for the players and note down its ID. Do the same for the Storyteller.
@@ -26,7 +26,8 @@ If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This u
 1. Login to [the bot's control panel](https://yagpdb.xyz/manage)
 2. Go to `Custom Commands` > `Commands` . Create a command group for text games to stay organized (and if you have other CCs).
 3. For each command you want to add, copy+paste the code exactly as in the files (the ones below need some changes)
-   
+<img width="847" height="367" alt="image" src="https://github.com/user-attachments/assets/99ebe0eb-b27b-4632-8b1d-fb64f735f489" />
+
 (1-1)
 * replace all `/1/` with the role ID of the player role (e.g. `/1/` becomes `123456789`)
 * replace all `/2/` with the role ID of the ST role
@@ -42,4 +43,9 @@ Feel free to change `>` in the trigger to any prefix of your choice, and `comman
 (2-1)
 * set trigger type to Slash command and call it whatever you want. Set response to `Ephemeral Message Response` . Set up the options like so
 <img width="1268" height="775" alt="image" src="https://github.com/user-attachments/assets/6aaf7d5f-ef6c-4a0b-84d9-fe5d554e3ae1" />
-
+(2-3b)
+* set trigger type to `None`
+(3-4b)
+* set trigger type to `Message Component` and the trigger `^cv-` exactly.
+(3-4c)
+* set trigger type to `Modal Submission` and the trigger `cvModal=` exactly.
