@@ -37,4 +37,9 @@ If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This u
 
 4. Set the trigger type of all commands except 2-1, 2-3b, 2-3c, 3-4b, 3-4c to `Regex`. The `Trigger` should be `^>commandname`
 Feel free to change `>` in the trigger to any prefix of your choice, and `commandname` to any name.
--# (e.g. if you want a `!` prefix and the name `nominate`,  make the trigger `^!nominate`) 
+*(e.g. if you want a `!` prefix and the name `nominate`,  make the trigger `^!nominate`)*
+
+(2-1)
+* set trigger type to Slash command and call it whatever you want. Set response to `Ephemeral Message Response` . Set up the options like so
+<img width="1268" height="775" alt="image" src="https://github.com/user-attachments/assets/6aaf7d5f-ef6c-4a0b-84d9-fe5d554e3ae1" />
+
