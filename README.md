@@ -36,7 +36,7 @@ If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This u
 * replace all `/1/` with the role ID of the player role
 * replace `/2/` with the channel ID of your kibitz channel
 
-4. Set the trigger type of all commands except 2-1, 2-3b, 2-3c, 3-4b, 3-4c to `Regex`. The `Trigger` should be `^>commandname`
+4. Set the trigger type of all commands ***except*** 2-1, 2-3b, 2-3c, 3-4b, 3-4c to `Regex`. The `Trigger` should be `^>commandname`
 Feel free to change `>` in the trigger to any prefix of your choice, and `commandname` to any name.
 *(e.g. if you want a `!` prefix and the name `nominate`,  make the trigger `^!nominate`)*
 
@@ -49,3 +49,5 @@ Feel free to change `>` in the trigger to any prefix of your choice, and `comman
 * set trigger type to `Message Component` and the trigger `^cv-` exactly.
 (3-4c)
 * set trigger type to `Modal Submission` and the trigger `cvModal=` exactly.
+
+5. Make sure YAGPDB has the appropriate permissions to send messages, create threads, pin, etc. Restrict any commands by setting the required roles (your ST role, for example for some of them). 
