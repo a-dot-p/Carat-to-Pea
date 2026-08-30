@@ -30,5 +30,8 @@ If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This u
 (1-1)
 * replace all `/1/` with the role ID of the player role (e.g. `/1/` becomes `123456789`)
 * replace all `/2/` with the role ID of the ST role
-  
+
+(3-2)
+* replace all `/1/` with the role ID of the player role
+* replace `/2/` with the channel ID of your kibitz channel
 
