@@ -1,0 +1,21 @@
+{{$args := parseArgs 2 "`>ts (kill | revive | vt ) name\nname has to be exactly as written`" (carg "string" "action") (carg "string" "name")}}
+{{$action := $args.Get 0}}
+{{$name := $args.Get 1}}
+{{$mID := (dbGet 1 "TSmID").Value }}
+{{$ts := getMessage nil $mID}} 
+{{$ts = index ($ts.Embeds) 0}}
+{{$sdict := structToSdict $ts}}
+{{$ts = $sdict.Description}}
+ 
+{{if eq $action "kill"}}
+	{{$ts = reReplace $name $ts (print "🪦 🗳️ " $name)}}
+{{else if eq $action "revive"}}
+	{{$ts = reReplace (print `🪦\s(🗳️\s)?` $name) $ts $name}}
+{{else if eq $action "vt"}}
+	{{$ts = reReplace (print "🪦 🗳️ " $name) $ts (print "🪦 " $name)}}
+{{end}}
+ 
+{{$sdict.Set "description" $ts}}
+{{$msg := complexMessageEdit "embed" $sdict}}
+{{editMessage nil $mID $msg}}
+{{addReactions "🫛"}}
