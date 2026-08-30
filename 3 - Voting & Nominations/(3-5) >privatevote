@@ -1,0 +1,6 @@
+{{$args := parseArgs 2 "`>privatevote nomID `voteText" (carg "int" "nomID") (carg "string" "voteMsg")}}
+{{$nomID := $args.Get 0}}
+{{$voteMsg := $args.Get 1}}
+ 
+{{dbSet 1 (printf "p-%d-%d" $nomID .User.ID) $voteMsg}}
+{{addReactions "🫛"}}
