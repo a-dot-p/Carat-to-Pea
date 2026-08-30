@@ -1,0 +1,22 @@
+{{$args := parseArgs 1 "`>countvotes nomID`" (carg "int" "nomID") }}
+{{$nomID := $args.Get 0}}
+{{$list := (dbGet 1 $nomID).Value}}
+{{$nomThread := (dbGet 1 "nominationThread").Value}}
+{{$list = (getMessage $nomThread $list).Embeds}}
+{{$embed := index $list 0}}
+{{$desc := "-# (no private votes for this nom)"}}
+{{$privateVoter := ""}}
+{{$privateVotes := dbGetPattern 1 (printf "p-%d-%%" $nomID) 100 0}} 
+{{if $privateVotes}}
+	{{$desc = "**Private Votes:**"}}
+	{{range $privateVotes}}
+		{{$privateVoter = reFind `\d+$` .Key}}
+		{{$privateVoter = (getMember $privateVoter).Nick}}
+		{{$desc = joinStr "\n" $desc (printf "%s - %s" $privateVoter .Value)}}
+	{{end}}
+{{end}}                                       
+ 
+{{$button := cbutton "label" "Count Votes" "custom_id" (printf "cv-%d" $nomID)}}
+{{$msg := complexMessage "embed" $embed "buttons" $button "content" $desc}}
+{{sendMessage nil $msg}}
+{{addReactions "🫛"}}
