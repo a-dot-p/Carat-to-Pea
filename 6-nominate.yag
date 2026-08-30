@@ -1,0 +1,79 @@
+{{if not .Channel.IsThread}}
+```Please nominate in the nomination thread.```
+	{{return}}
+{{end}}
+{{$args := parseArgs 2 "`>nom @user accusation`" (carg "member" "nominee") (carg "string" "accusation")}}
+{{$nomineeMention := $args.Get 0}}
+{{$accu := $args.Get 1}}
+{{$players := (dbGet 1 "townSquare").Value}}
+{{if not $players}}
+```No Town Square set up!```
+	{{return}}
+{{end}}
+{{$nominator := .Member.Nick}}
+{{$nominee := $nomineeMention.Nick}}
+{{$textRole := /1/}}
+{{$nomThread := (dbGet 1 "nominationThread").Value}}
+{{$numPlayers := len $players}}
+{{$nomineeID := str $nomineeMention.User.ID}}
+ 
+{{/* Death Updater*/}}
+{{$mID := (dbGet 1 "TSmID").Value }}
+{{$ts := getMessage .Channel.ParentID $mID}} 
+{{$ts = index ($ts.Embeds) 0}}
+{{$sdict := structToSdict $ts}}
+{{$ts = $sdict.Description}}
+ 
+  
+{{$startIndex := 0}}
+{{$i := 0}}
+{{$name := ""}}
+{{$regex1 := ""}}
+{{$regex2 := ""}}
+{{range $players}}
+	{{if eq . $nomineeID }}
+        {{$startIndex = add $i 1}} 
+    {{end}}
+	{{$name = (getMember . ).Nick}}
+	{{$name = reReplace "!" $name ""}}
+	{{$regex1 = (printf "🪦 🗳️ %s" $name)}}  
+	{{$regex2 = (printf "🪦(.+)?%s" $name)}}  
+	{{if reFind $regex1 $ts}}
+   		{{$players.Set $i (printf "🪦 🗳️ <@%s>" .)}}
+    {{else if reFind $regex2 $ts}}        
+		{{$players.Set $i (printf "🪦 <@%s>" .)}}
+	{{else}} 
+		{{$players.Set $i (printf "<@%s>" .)}}    
+	{{end}}
+	{{$i = add 1 $i}}
+{{end}}
+ 
+{{$votes := cslice}}
+{{range $j := (seq 0 $numPlayers)}}
+	{{$k := (toInt (mod (add $startIndex $j) $numPlayers))}}
+	{{$voter := index $players $k}}
+    {{$votes = $votes.Append $voter}}
+{{end}}
+{{$votes = joinStr "\n...\n\n" $votes}}
+{{$votes = joinStr "\n" $votes "..."}}
+{{ $result := randInt 100 1000 }}
+ 
+{{$mID := sendMessageNoEscapeRetID $nomThread (complexMessage
+	"content" (printf "<@&%d>\n%s nominates %s!\n\nAccusation: %s\n\nDefense: ..." $textRole $nominator $nominee $accu)
+	"embed" (cembed
+		"title" "Votes"
+		"description" $votes
+		"color" 15879747
+		"fields" (cslice
+			(sdict
+				"name" "Nomination ID"
+				"value" (str $result)
+				"inline" false
+			)
+		)
+	)
+) }}
+{{dbSet 1 $result (str $mID)}}
+{{pinMessage $nomThread $mID}}
+{{sendMessage /2/ (printf "### Nomination made\nnominator: %s\nnominee: %s\nnomination ID: **%d**" $nominator $nominee $result)}}
+{{addReactions "🫛"}}
