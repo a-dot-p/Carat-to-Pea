@@ -1,0 +1,46 @@
+{{$nomID := .StrippedID}}
+{{$result := index .Values 0}}
+{{$list := (dbGet 1 $nomID).Value}}
+{{$nomThread := (dbGet 1 "nominationThread").Value}}
+{{$list = (getMessage $nomThread $list).Embeds}}
+{{$embed := index $list 0}}
+{{$sdict := structToSdict $embed}}
+{{$list = $embed.Description}}
+{{$votes := reFindAll `(🪦\s)?(🗳️\s)?<@\d+>\n.*` $list}}
+{{$indVotes := split $result ";"}}
+{{if not (eq (len $indVotes) (len $votes))}}
+	```Number of votes sent does not match player count.```
+	{{return}}
+{{end}}
+{{$yeses := 0}}
+{{$nos := 0}}
+{{$iterations := (len $votes) }}
+{{$j := 0}}
+{{$val := ""}}
+{{$finalVotes := cslice}}
+{{range $iterations}}
+	{{$val = index $indVotes $j}}
+	{{if or (eq $val "Y") (eq $val "y")}}
+		{{$finalVotes = $finalVotes.Append "✅"}}
+		{{$yeses = add $yeses 1}}
+	{{else}}
+		{{$finalVotes = $finalVotes.Append "❌"}}
+		{{$nos = add $nos 1}}
+	{{end}}
+	{{$j = add 1 $j}}
+{{end}}
+ 
+{{$k := 0}}
+{{$editVotes := ""}}
+{{range $votes}}
+	{{$symbol := index $finalVotes $k}}
+	{{$change := reReplace "\n.*" . (printf "\n%s" $symbol) }}
+	{{$editVotes = joinStr "\n\n" $editVotes $change}}
+	{{$k = add 1 $k}}
+{{end}}
+{{$sdict.Set "description" $editVotes}}
+{{$msg := complexMessageEdit "embed" $sdict}}
+{{editMessage $nomThread (dbGet 1 $nomID).Value $msg}}
+Successfully counted votes for nomination ID: **{{$nomID}}**
+number of yes votes: **{{$yeses}}**
+number of no votes: **{{$nos}}**
