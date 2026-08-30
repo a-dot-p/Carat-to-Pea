@@ -1,0 +1,21 @@
+{{$ids := cslice}}
+{{$idStr := ""}}
+{{$list := " "}}
+{{$member := ""}}
+{{$i := 1}}
+{{range .CmdArgs}}
+	{{$idStr = reFind `\d+` . }}
+	{{$ids = $ids.Append $idStr}}
+	{{$member = getMember .}}
+	{{$member = $member.Nick}}
+	{{$member = reReplace `!` $member ""}}
+	{{$list = joinStr "\n\n### " $list (print $i ") " $member)}}
+	{{$i = add 1 $i}}
+{{end}}
+{{$embed := (cembed	"title" "Town Square" "color" 12258768 "description" $list)}}
+{{$msg := complexMessage "embed" $embed}}
+{{$mID := sendMessageRetID nil $msg}}
+{{pinMessage nil $mID}}
+{{dbSet 1 "townSquare" $ids}}
+{{dbSet 1 "TSmID" (str $mID)}}
+{{addReactions "🫛"}}
