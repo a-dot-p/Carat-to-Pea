@@ -1,0 +1,6 @@
+{{$args := parseArgs 1 "`>setreminder X` (X hours, max 24)" (carg "int" "delay")}} 
+{{$delay := $args.Get 0}}
+{{$delay = mult $delay 3600}}
+{{execCC /1/ nil $delay $delay}}
+Set a reminder **{{$args.Get 0}}** hours from now.
+{{addReactions "🫛"}}
