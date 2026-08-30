@@ -1,0 +1,6 @@
+{{$threads := dbGetPattern 1 "stThread-%" 100 0}}
+{{$msg := .StrippedMsg}}
+{{range $threads}}
+	{{sendMessage .Value $msg}}
+{{end}}
+{{addReactions "🫛"}}
