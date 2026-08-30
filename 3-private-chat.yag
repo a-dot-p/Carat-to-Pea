@@ -1,0 +1,33 @@
+Creating Thread...
+{{$creator := .User.ID}}
+{{$user1 := getMember .Options.user1}}
+{{$user2 := getMember .Options.user2}}
+{{$user3 := getMember .Options.user3}}
+{{$user4 := getMember .Options.user4}}
+ 
+{{$name := .Member.Nick}}
+{{if .Options.threadname}}
+  {{$name = .Options.threadname}}
+{{else if .Options.user4}}
+	{{$name = joinStr ", " .Member.Nick $user1.Nick $user2.Nick $user3.Nick $user4.Nick}}
+{{else if .Options.user3}}
+	{{$name = joinStr ", " .Member.Nick $user1.Nick $user2.Nick $user3.Nick}}
+{{else if .Options.user2}}
+	{{$name = joinStr ", " .Member.Nick $user1.Nick $user2.Nick}}
+{{else if .Options.user1}}
+	{{$name = joinStr ", " .Member.Nick $user1.Nick}}
+{{end}}
+ 
+{{$thread := createThread nil nil
+  $name
+  true 10080 true}}
+{{$threadID := $thread.ID}}
+ 
+{{addThreadMember $threadID .User.ID}}
+{{addThreadMember $threadID .Options.user1}}
+{{addThreadMember $threadID .Options.user2}}
+{{addThreadMember $threadID .Options.user3}}
+{{addThreadMember $threadID .Options.user4}}
+{{if .Options.stthread}}
+	{{dbSet 1 (printf "stThread-%s" .Member.User.Globalname) (str $threadID)}}
+{{end}}
