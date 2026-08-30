@@ -37,4 +37,4 @@ If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This u
 
 4. Set the trigger type of all commands except 2-1, 2-3b, 2-3c, 3-4b, 3-4c to `Regex`. The `Trigger` should be `^>commandname`
 Feel free to change `>` in the trigger to any prefix of your choice, and `commandname` to any name.
-* (e.g. if you want a `!` prefix and the name `nominate`,  make the trigger `^!nominate`) 
+-# (e.g. if you want a `!` prefix and the name `nominate`,  make the trigger `^!nominate`) 
