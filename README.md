@@ -58,6 +58,7 @@ Feel free to change `>` in the trigger to any prefix of your choice, and `comman
 
 * set trigger type to `Modal Submission` and the trigger `cvModal=` exactly.
 
+
 5. Make sure YAGPDB has the appropriate permissions to send messages, create threads, pin, etc. Restrict any commands by setting the required roles (your ST role, for example for some of them). 
 
 # Commands Guide
