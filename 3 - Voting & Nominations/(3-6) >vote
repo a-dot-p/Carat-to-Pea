@@ -1,0 +1,17 @@
+{{$args := parseArgs 2 "`>vote nomID voteText`" (carg "int" "nomID") (carg "string" "voteMsg")}}
+{{$nomID := $args.Get 0}}
+{{$voteMsg := $args.Get 1}}
+ 
+{{$mID := (dbGet 1 $nomID).Value}}
+{{$nomThread := (dbGet 1 "nominationThread").Value}}
+{{$list := (getMessage $nomThread $mID).Embeds}}
+{{$embed := index $list 0}}
+{{$sdict := structToSdict $embed}}
+{{$list = $embed.Description}}
+ 
+{{$list = reReplace (printf "<@%d>\n.*" .User.ID) $list (printf "<@%d>\n%s" .User.ID $voteMsg)}}
+{{$sdict.Set "description" $list}}
+ 
+{{$msg := complexMessageEdit "embed" $sdict "content" (getMessage $nomThread $mID).Content}}
+{{editMessage $nomThread $mID $msg}}
+{{addReactions "🫛"}}
