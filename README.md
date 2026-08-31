@@ -41,13 +41,21 @@ Feel free to change `>` in the trigger to any prefix of your choice, and `comman
 *(e.g. if you want a `!` prefix and the name `nominate`,  make the trigger `^!nominate`)*
 
 (2-1)
+
 * set trigger type to Slash command and call it whatever you want. Set response to `Ephemeral Message Response` . Set up the options like so
+  
 <img width="1268" height="775" alt="image" src="https://github.com/user-attachments/assets/6aaf7d5f-ef6c-4a0b-84d9-fe5d554e3ae1" />
+
 (2-3b)
+
 * set trigger type to `None`
+  
 (3-4b)
+
 * set trigger type to `Message Component` and the trigger `^cv-` exactly.
+  
 (3-4c)
+
 * set trigger type to `Modal Submission` and the trigger `cvModal=` exactly.
 
 5. Make sure YAGPDB has the appropriate permissions to send messages, create threads, pin, etc. Restrict any commands by setting the required roles (your ST role, for example for some of them). 
