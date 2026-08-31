@@ -51,3 +51,52 @@ Feel free to change `>` in the trigger to any prefix of your choice, and `comman
 * set trigger type to `Modal Submission` and the trigger `cvModal=` exactly.
 
 5. Make sure YAGPDB has the appropriate permissions to send messages, create threads, pin, etc. Restrict any commands by setting the required roles (your ST role, for example for some of them). 
+
+# Commands Guide
+1. Game Setup
+  1-1: `>text play` or `text st`
+    adds you to the text game & gives you the role. type again to remove.
+  1-2: `>list`
+     see current Storyteller and players list (from 1-1)
+  1-3: `>setuptownsquare @player1 @player2 ...`
+     set the order of seats in the town square. **Votes and nominations will not work without this**. Players cannot be added after this point.
+  1-4: `>kibitz @user1 @user2 ...`
+     add/remove specified players from kibitz channel.
+  1-5: `>resettextgame`
+     resets current game data to start a new one. **Recommended to set required roles of this to the Storyteller role**
+2. In-Game
+  2-1: `/privatechat`
+     main way to create private threads for whispers. Players should make their own ST thread by marking the ST thread option - necessary to use (2-2).
+  2-2: `>sendtothreads`
+     for the ST to send messages inside of all ST threads created by the _player_ using 2-1.
+  2-3: `>setreminder X`
+     set a reminder X hours from now & pinging the players 24 - X hours remain. (ex. >setreminder 14 -> ping when 10hrs left
+  2-3b: command response for the reminders. (need both to work)
+
+  2-4: `>ts (kill | revive | vt) name`
+    kill: marks the player as dead in the town square
+    revive: resets the player to alive
+    vt: removes the (dead) player's vote token
+    name should be exactly as it appears in the town square. Use " " for names with spaces
+      e.g. >ts kill "Bob Jones"
+
+3. Voting & Nominations
+  3-1: `>createnomthread`
+    for the Storyteller to create a nomination thread each game day.
+  3-2: `>nom @player accusation`
+    nominate a player and send an accusation.
+  3-3: `adddefense nomID defense`
+    add a defense when you're nominated. nomID is the number at the bottom of each nomination.
+  3-4: `>countvotes nomID`
+    for the ST: see & count votes for a particular nomination in kibitz channel.
+  3-4b: count votes button response
+  3-4c: count votes modal response (all 3 needed to work).
+
+  3-5: `>privatevote nomID message`
+    same as normal vote but done privately in ST thread 
+
+  3-6: `>vote nomID message`
+    vote for a player with the given nomination ID (at the bottom of each nom) and a message ("yes", "no" ...)
+  
+
+   
