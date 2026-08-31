@@ -26,7 +26,6 @@ If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This u
 1. Login to [the bot's control panel](https://yagpdb.xyz/manage)
 2. Go to `Custom Commands` > `Commands` . Create a command group for text games to stay organized (and if you have other CCs).
 3. For each command you want to add, copy+paste the code exactly as in the files (the ones below need some changes)
-<img width="847" height="367" alt="image" src="https://github.com/user-attachments/assets/99ebe0eb-b27b-4632-8b1d-fb64f735f489" />
 
 (1-1)
 * replace all `/1/` with the role ID of the player role (e.g. `/1/` becomes `123456789`)
@@ -39,6 +38,7 @@ If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This u
 4. Set the trigger type of all commands ***except*** 2-1, 2-3b, 2-3c, 3-4b, 3-4c to `Regex`. The `Trigger` should be `^>commandname`
 Feel free to change `>` in the trigger to any prefix of your choice, and `commandname` to any name.
 *(e.g. if you want a `!` prefix and the name `nominate`,  make the trigger `^!nominate`)*
+<img width="847" height="367" alt="image" src="https://github.com/user-attachments/assets/99ebe0eb-b27b-4632-8b1d-fb64f735f489" />
 
 (2-1)
 
