@@ -1,4 +1,0 @@
-{{- $x := sdict "userID" 1}}
-Text game reset.
--# {{dbDelMultiple $x 100 0}} database values deleted.
-{{addReactions "🫛"}}
