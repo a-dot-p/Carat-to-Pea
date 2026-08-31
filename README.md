@@ -15,7 +15,7 @@ Credit goes to the [Carat](https://github.com/JackKBroome/Carat_BOTC) bot in the
 # Setup
 
 ### I. Add YAGPDB
-If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This uses the Custom Commands feature: `17` are currently implemented, so 17 custom command slots need to be open. The built-in database is used to store game info. Any previous data with the userID `1` will be overwritten!
+If you haven't already, add [YAGPDB](https://yagpdb.xyz/) to your server. This uses the Custom Commands feature: `18` are currently implemented, so 18 custom command slots need to be open. The built-in database is used to store game info. Any previous data with the userID `1` will be overwritten!
 
 ### II. Discord Setup
 1. Create a role for the players and note down its ID. Do the same for the Storyteller.
