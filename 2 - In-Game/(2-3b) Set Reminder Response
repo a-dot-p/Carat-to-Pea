@@ -1,1 +1,1 @@
-{{mentionRole "Text Game Player"}} {{sub 20 (div .ExecData 3600)}} hours left for nominations and whispers!
+{{mentionRole "Text Game Player"}} {{sub 24 (div .ExecData 3600)}} hours left for nominations and whispers!
